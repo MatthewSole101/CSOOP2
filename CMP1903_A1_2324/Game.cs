@@ -58,9 +58,22 @@ namespace CMP1903_A1_2324
 
     class SevensOut
     {
-        public Tuple<int, int> game()
+        Die die = new Die();
+
+        public Tuple<int, int> Player1game()
         {
-            Die die = new Die();
+            
+            
+            int Roll1 = die.Roll();
+            int Roll2 = die.Roll();
+            
+            return new Tuple<int, int>(Roll1, Roll2);
+
+
+        }
+        
+        public Tuple<int, int> Player2game()
+        {
             
             
             int Roll1 = die.Roll();

@@ -30,37 +30,85 @@ namespace CMP1903_A1_2324
             //Call the myMethod method and saving its return in Roll which is a tuple
 
             int totalroll = 0;
+            
+
             bool isExit = false;
+            int player1totalscore = 0;
+            int player2totalscore = 0;
             
             Console.WriteLine("Do you want to play SevensOut(1) or Three or More(2)?: ");
             int gameChoice = Convert.ToInt32(Console.ReadLine());
             
             if (gameChoice == 1)
             {
+                
                 while (isExit == false) 
                 {
-                    var Roll = so.game();
-                    if (Roll.Item1 != 7 )
+                    var Player1Roll = so.Player1game();
+                    var Player2Roll = so.Player1game();
+                    
+
+                    
+                    if (Player1Roll.Item1 != 7 || Player2Roll.Item1 != 7)
                     {
-                        if (Roll.Item1 != Roll.Item2)
+                        if (Player1Roll.Item1 != 7)
                         {
-                            totalroll = Roll.Item1 + Roll.Item2;
-                            stats.playerStat(totalroll);
-                            Console.WriteLine("Dice rolled are: " + Roll.Item1 + " and " + Roll.Item2);
-                        
+                            if (Player1Roll.Item1 != Player1Roll.Item2)
+                            {
+                                totalroll = Player1Roll.Item1 + Player1Roll.Item2;
+                                player1totalscore = stats.player1Stat(totalroll);
+                                Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1 + " and " + Player1Roll.Item2);
+                                Console.WriteLine("");
+
+                            }
                         }
+
+                        if (Player2Roll.Item1 != 7)
+                        {
+                            if (Player2Roll.Item1 != Player2Roll.Item2)
+                            {
+                                totalroll = Player2Roll.Item1 + Player2Roll.Item2;
+                                player2totalscore = stats.player2Stat(totalroll);
+                                Console.WriteLine("Player 2 die rolled are: " + Player2Roll.Item1 + " and " + Player2Roll.Item2);
+                        
+                            }
+                        }
+                       
                     }
 
-                    if ( Roll.Item1 == Roll.Item2 )
+                    if ( Player1Roll.Item1 == Player1Roll.Item2 ||Player2Roll.Item1 == Player2Roll.Item2)
                     {
-                        totalroll = (Roll.Item1 * 2) + (Roll.Item1 * 2);
-                        stats.playerStat(totalroll);
-                        Console.WriteLine("Dice rolled are: " + Roll.Item1 + " and " + Roll.Item2);
+                        if ( Player1Roll.Item1 == Player1Roll.Item2) 
+                        {
+                            totalroll = (Player1Roll.Item1 * 2) + (Player1Roll.Item1 * 2);
+                            player1totalscore = stats.player1Stat(totalroll);
+                            Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1 + " and " + Player1Roll.Item2);
+                            Console.WriteLine("");
+
+                        }
+                        if (Player2Roll.Item1 == Player2Roll.Item2)
+                        {
+                            totalroll = (Player2Roll.Item1 * 2) + (Player2Roll.Item1 * 2);
+                            player2totalscore = stats.player2Stat(totalroll);
+                            Console.WriteLine("Player 2 die rolled are: " + Player2Roll.Item1 + " and " + Player2Roll.Item2);
+                        }
+                       
                     }
-                    if (Roll.Item1 == 7)
+                    if (Player1Roll.Item1 == 7 ||Player2Roll.Item1 == 7 )
                     {
-                        stats.playerStat(Roll.Item1);
-                        Console.WriteLine("Die rolled are: " + Roll.Item1);
+                        if (Player1Roll.Item1 == 7)
+                        {
+                            player1totalscore = stats.player1Stat(Player1Roll.Item1);
+                            Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1);
+                            Console.WriteLine("");
+
+                        }
+                        if (Player2Roll.Item1 == 7 )
+                        {
+                            player2totalscore = stats.player2Stat(Player2Roll.Item1);
+                            Console.WriteLine("Player 2 die rolled are: " + Player2Roll.Item1);
+                        }
+                        
                     }
                     Console.WriteLine("Do you want to continue(yes/no)?: ");
                     string userExit = Console.ReadLine();
@@ -73,13 +121,20 @@ namespace CMP1903_A1_2324
                     {
                         isExit = false;
                     }
-                    else
-                    {
-                        Console.WriteLine("Invalid input!!");
-                    }
+                    // else
+                    // {
+                    // if(nameof.type = string)
+                    //     Console.WriteLine("Invalid input!!");
+                    // }
 
                 }
+                
+                Console.WriteLine("Player 1's total score is "+ player1totalscore);
+                Console.WriteLine("Player 2's total score is "+ player2totalscore);
+
             }
+            
+            
             
             
 
