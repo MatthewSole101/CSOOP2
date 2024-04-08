@@ -88,6 +88,42 @@ namespace CMP1903_A1_2324
 
     class ThreeOrMore
     {
-        
+        public List<int> Player1game()
+        {
+            Die die = new Die();
+            List<int> rollList = new List<int>();
+            
+            int Roll1 = die.Roll();
+            int Roll2 = die.Roll();
+            int Roll3 = die.Roll();
+            int Roll4 = die.Roll();
+            int Roll5 = die.Roll();
+            rollList.Add(Roll1);
+            rollList.Add(Roll2);
+            rollList.Add(Roll3);
+            rollList.Add(Roll4);
+            rollList.Add(Roll5);
+            Console.WriteLine("Hello");
+            
+            return rollList ;
+        }
+
+        public int checkUnique(List<int> RollNumbers)
+        {
+            int count = 0;
+            for (int i = 0; i < RollNumbers.Count; i++)
+            {
+                for (int j = i + 1; j < RollNumbers.Count; j++)
+                {
+                    if (RollNumbers[i] == RollNumbers[j])
+                    {
+                        // If any two numbers are equal, the list is not unique
+                        count++;
+                    }
+                }
+            }
+            return count;
+            
+        }
     }
 }

@@ -25,7 +25,9 @@ namespace CMP1903_A1_2324
             //Created a Game and SevensOut object
             Game gm = new Game();
             SevensOut so = new SevensOut();
+            ThreeOrMore tom = new ThreeOrMore();
             Statistics stats = new Statistics();
+            
 
             //Call the myMethod method and saving its return in Roll which is a tuple
 
@@ -45,7 +47,7 @@ namespace CMP1903_A1_2324
                 while (isExit == false) 
                 {
                     var Player1Roll = so.Player1game();
-                    var Player2Roll = so.Player1game();
+                    var Player2Roll = so.Player2game();
                     
 
                     
@@ -56,7 +58,7 @@ namespace CMP1903_A1_2324
                             if (Player1Roll.Item1 != Player1Roll.Item2)
                             {
                                 totalroll = Player1Roll.Item1 + Player1Roll.Item2;
-                                player1totalscore = stats.player1Stat(totalroll);
+                                player1totalscore = stats.SevensOutplayer1Stat(totalroll, false);
                                 Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1 + " and " + Player1Roll.Item2);
                                 Console.WriteLine("");
 
@@ -68,7 +70,7 @@ namespace CMP1903_A1_2324
                             if (Player2Roll.Item1 != Player2Roll.Item2)
                             {
                                 totalroll = Player2Roll.Item1 + Player2Roll.Item2;
-                                player2totalscore = stats.player2Stat(totalroll);
+                                player2totalscore = stats.SevensOutplayer2Stat(totalroll, false);
                                 Console.WriteLine("Player 2 die rolled are: " + Player2Roll.Item1 + " and " + Player2Roll.Item2);
                         
                             }
@@ -81,7 +83,7 @@ namespace CMP1903_A1_2324
                         if ( Player1Roll.Item1 == Player1Roll.Item2) 
                         {
                             totalroll = (Player1Roll.Item1 * 2) + (Player1Roll.Item1 * 2);
-                            player1totalscore = stats.player1Stat(totalroll);
+                            player1totalscore = stats.SevensOutplayer1Stat(totalroll, false);
                             Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1 + " and " + Player1Roll.Item2);
                             Console.WriteLine("");
 
@@ -89,7 +91,7 @@ namespace CMP1903_A1_2324
                         if (Player2Roll.Item1 == Player2Roll.Item2)
                         {
                             totalroll = (Player2Roll.Item1 * 2) + (Player2Roll.Item1 * 2);
-                            player2totalscore = stats.player2Stat(totalroll);
+                            player2totalscore = stats.SevensOutplayer2Stat(totalroll, false);
                             Console.WriteLine("Player 2 die rolled are: " + Player2Roll.Item1 + " and " + Player2Roll.Item2);
                         }
                        
@@ -98,18 +100,29 @@ namespace CMP1903_A1_2324
                     {
                         if (Player1Roll.Item1 == 7)
                         {
-                            player1totalscore = stats.player1Stat(Player1Roll.Item1);
+                            player1totalscore = stats.SevensOutplayer1Stat(Player1Roll.Item1, false);
                             Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1);
                             Console.WriteLine("");
 
                         }
                         if (Player2Roll.Item1 == 7 )
                         {
-                            player2totalscore = stats.player2Stat(Player2Roll.Item1);
+                            player2totalscore = stats.SevensOutplayer2Stat(Player2Roll.Item1, false);
                             Console.WriteLine("Player 2 die rolled are: " + Player2Roll.Item1);
                         }
                         
                     }
+                    Console.WriteLine("Do you want to look at your statistics");
+                    string userStatChoice = Console.ReadLine();
+
+                    if (userStatChoice == "Yes" || userStatChoice == "yes")
+                    {
+                        stats.SevensOutplayer1Stat(0, true);
+                        stats.SevensOutplayer2Stat(0, true);
+
+                        
+                    }
+                    
                     Console.WriteLine("Do you want to continue(yes/no)?: ");
                     string userExit = Console.ReadLine();
 
@@ -131,6 +144,65 @@ namespace CMP1903_A1_2324
                 
                 Console.WriteLine("Player 1's total score is "+ player1totalscore);
                 Console.WriteLine("Player 2's total score is "+ player2totalscore);
+
+            }
+
+            if (gameChoice == 2)
+            {
+                int threeOrMoreplayer1Score = 0;
+                int threeOrMoreplayer2Score = 0;
+                int count = 0;
+
+                // int uniqueNum = 0;
+                //
+                // List<int>Player1Roll = tom.Player1game();
+                // Console.WriteLine("");
+                //
+                // for (int i = 0; i < 5; i++)
+                // {
+                //     Console.WriteLine(Player1Roll[i]);
+                // }
+                //
+                // uniqueNum = tom.checkUnique(Player1Roll);
+                // uniqueNum = 5 - uniqueNum;
+                // if (uniqueNum == 4)
+                // {
+                //     uniqueNum = uniqueNum - 1;
+                // }
+                //
+                // threeOrMoreplayer1Score = stats.ThreeOrMorePlayer1Stat(uniqueNum, false);
+                // Console.WriteLine("It has " +uniqueNum +" unique numbers");
+                // Console.WriteLine("The dice are "+ uniqueNum+ " of a kind.");
+
+                
+                   
+                    while (threeOrMoreplayer1Score < 20 )
+                    {
+                        List<int>Player1Roll = tom.Player1game();
+
+                        int uniqueNum = 0;
+                
+                        Console.WriteLine("");
+    
+                        for (int i = 0; i < 5; i++)
+                        {
+                            Console.WriteLine(Player1Roll[i]);
+                        }
+
+                        uniqueNum = tom.checkUnique(Player1Roll);
+                        uniqueNum = 5 - uniqueNum;
+                        if (uniqueNum == 4)
+                        {
+                            uniqueNum = uniqueNum - 1;
+                        }
+                        
+                        threeOrMoreplayer1Score = stats.ThreeOrMorePlayer1Stat(uniqueNum, false);
+                        Console.WriteLine("The dice are "+ uniqueNum+ " of a kind.");
+                        Console.WriteLine(threeOrMoreplayer1Score);
+                    }
+                    
+                    stats.ThreeOrMorePlayer1Stat(0, true);
+                    
 
             }
             
