@@ -175,10 +175,13 @@ namespace CMP1903_A1_2324
                 // Console.WriteLine("The dice are "+ uniqueNum+ " of a kind.");
 
                 
-                   
+
                     while (threeOrMoreplayer1Score < 20 )
                     {
-                        List<int>Player1Roll = tom.Player1game();
+                        ThreeOrMore tom2 = new ThreeOrMore();
+                        List<int> Player1RollThreeorMore = new List<int>();
+
+                        Player1RollThreeorMore = tom2.Player1game();
 
                         int uniqueNum = 0;
                 
@@ -186,10 +189,11 @@ namespace CMP1903_A1_2324
     
                         for (int i = 0; i < 5; i++)
                         {
-                            Console.WriteLine(Player1Roll[i]);
+                            Console.WriteLine(Player1RollThreeorMore[i]);
                         }
+                        Console.WriteLine(threeOrMoreplayer1Score);
 
-                        uniqueNum = tom.checkUnique(Player1Roll);
+                        uniqueNum = tom.checkUnique(Player1RollThreeorMore);
                         uniqueNum = 5 - uniqueNum;
                         if (uniqueNum == 4)
                         {
@@ -198,7 +202,6 @@ namespace CMP1903_A1_2324
                         
                         threeOrMoreplayer1Score = stats.ThreeOrMorePlayer1Stat(uniqueNum, false);
                         Console.WriteLine("The dice are "+ uniqueNum+ " of a kind.");
-                        Console.WriteLine(threeOrMoreplayer1Score);
                     }
                     
                     stats.ThreeOrMorePlayer1Stat(0, true);
