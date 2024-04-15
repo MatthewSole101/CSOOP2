@@ -103,6 +103,7 @@ namespace CMP1903_A1_2324
             rollList.Add(Roll3);
             rollList.Add(Roll4);
             rollList.Add(Roll5);
+            Console.WriteLine("Hello");
             
             return rollList ;
         }

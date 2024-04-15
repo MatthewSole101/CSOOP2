@@ -27,6 +27,7 @@ namespace CMP1903_A1_2324
 
             if (userStat == true)
             {
+                Console.WriteLine("");
                 Console.WriteLine("Player 1's high score is: " + sevensOutPlayer1HighScore);
                 Console.WriteLine("Player 1 has made " + sevensOutPlayer1NumberPlays + " moves");
             }
