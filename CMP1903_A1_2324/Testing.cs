@@ -199,6 +199,7 @@ namespace CMP1903_A1_2324
                     if (player1totalscore == player2totalscore)
                     {
                         Console.WriteLine("");
+
                         Console.WriteLine("It's a draw!");
                     }
 
@@ -252,7 +253,7 @@ namespace CMP1903_A1_2324
                 }
                 else
                 {
-                    Console.WriteLine("Invalid input, try again");
+                    // Console.WriteLine("Invalid input, try again");
                 }
                 
             }

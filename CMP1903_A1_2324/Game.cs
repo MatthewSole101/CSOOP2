@@ -88,9 +88,10 @@ namespace CMP1903_A1_2324
 
     class ThreeOrMore
     {
+        Die die = new Die();
+
         public List<int> Player1game()
         {
-            Die die = new Die();
             List<int> rollList = new List<int>();
             
             int Roll1 = die.Roll();
