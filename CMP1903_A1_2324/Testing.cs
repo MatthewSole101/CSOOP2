@@ -224,30 +224,82 @@ namespace CMP1903_A1_2324
                         {
                             ThreeOrMore tom2 = new ThreeOrMore();
                             List<int> Player1RollThreeorMore = new List<int>();
+                            List<int> Player2RollThreeorMore = new List<int>();
 
-                            Player1RollThreeorMore = tom2.Player1game();
-                            int uniqueNum = 0;
+                            if (threeOrMoreplayer1Score < 20)
+                            {
+                                Player1RollThreeorMore = tom2.Player1game();
+
+                                int uniqueNum = 0;
                     
-                            Console.WriteLine("");
+                                Console.WriteLine("");
+                                Console.WriteLine("Player 1");
 
-                            for (int i = 0; i < 5; i++)
-                            {
-                                Console.WriteLine(Player1RollThreeorMore[i]);
-                            }
 
-                            uniqueNum = tom2.checkUnique(Player1RollThreeorMore);
-                            uniqueNum = 5 - uniqueNum;
-                            if (uniqueNum == 4)
-                            {
-                                uniqueNum = uniqueNum - 1;
-                            }
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    Console.WriteLine(Player1RollThreeorMore[i]);
+                                }
+
+                                uniqueNum = tom2.checkUnique(Player1RollThreeorMore);
+                                uniqueNum = 5 - uniqueNum;
+                                // if (uniqueNum == 4)
+                                // {
+                                //     uniqueNum = uniqueNum - 1;
+                                // }
                             
-                            threeOrMoreplayer1Score = stats.ThreeOrMorePlayer1Stat(uniqueNum, false);
-                            Console.WriteLine("The dice are "+ uniqueNum+ " of a kind.");
-                            Console.WriteLine(threeOrMoreplayer1Score);
+                                threeOrMoreplayer1Score = stats.ThreeOrMorePlayer1Stat(uniqueNum, false);
+                                
+                                if (threeOrMoreplayer1Score == 1)
+                                {
+                                    threeOrMoreplayer1Score = 0;
+                                    
+                                }
+                                Console.WriteLine("The dice are "+ uniqueNum+ " of a kind.");
+                                Console.WriteLine(threeOrMoreplayer1Score);
+                            }
+
+                            if (threeOrMoreplayer2Score < 20)
+                            {
+                                Player2RollThreeorMore = tom2.Player2game();
+
+                                int uniqueNum = 0;
+                    
+                                Console.WriteLine("");
+                                Console.WriteLine("Player 2");
+
+
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    Console.WriteLine(Player2RollThreeorMore[i]);
+                                }
+
+                                uniqueNum = tom2.checkUnique(Player2RollThreeorMore);
+                                uniqueNum = 5 - uniqueNum;
+                                // if (uniqueNum == 4)
+                                // {
+                                //     uniqueNum = uniqueNum - 1;
+                                // }
+
+                               
+                            
+                                threeOrMoreplayer2Score = stats.ThreeOrMorePlayer2Stat(uniqueNum, false);
+
+                                if (threeOrMoreplayer2Score == 1)
+                                {
+                                    threeOrMoreplayer2Score = 0;
+                                    
+                                }
+                                Console.WriteLine("The dice are "+ uniqueNum+ " of a kind.");
+                                Console.WriteLine(threeOrMoreplayer2Score);
+                            }
+
+                            
                         }
                         
                         stats.ThreeOrMorePlayer1Stat(0, true);
+                        stats.ThreeOrMorePlayer2Stat(0, true);
+
 
                         menuExit = true;
                 }

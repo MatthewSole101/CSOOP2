@@ -71,6 +71,13 @@ namespace CMP1903_A1_2324
         {
             if (userStat == false)
             {
+                if (ofAKind == 2)
+                {
+                    Console.WriteLine("Do you want to rethrow all?(1) or thr remaining dice?(2): ");
+                    int rethrowChoice = Convert.ToInt32(Console.ReadLine());
+
+                    return rethrowChoice;
+                }
                 if (ofAKind == 3)
                 {
                     threeOrMorePlayer1TotalScore = threeOrMorePlayer1TotalScore + 3;
@@ -100,7 +107,49 @@ namespace CMP1903_A1_2324
 
            
         }
+        int threeOrMorePlayer2NumberPlays = 0;
+        int threeOrMorePlayer2TotalScore = 0;
         
+        public int ThreeOrMorePlayer2Stat(int ofAKind = 0, bool userStat = false)
+        {
+            if (userStat == false)
+            {
+                if (ofAKind == 2)
+                {
+                    Console.WriteLine("Do you want to rethrow all?(1) or thr remaining dice?(2): ");
+                    int rethrowChoice = Convert.ToInt32(Console.ReadLine());
+
+                    return rethrowChoice;
+                }
+                if (ofAKind == 3)
+                {
+                    threeOrMorePlayer2TotalScore = threeOrMorePlayer2TotalScore + 3;
+                }
+                if (ofAKind == 4)
+                {
+                    threeOrMorePlayer2TotalScore = threeOrMorePlayer2TotalScore + 6;
+                }
+                if (ofAKind == 5)
+                {
+                    threeOrMorePlayer2TotalScore = threeOrMorePlayer2TotalScore + 12;
+                }
+
+                threeOrMorePlayer2NumberPlays++;
+
+                return threeOrMorePlayer2TotalScore;
+            }
+
+            if (userStat == true)
+            {
+                Console.WriteLine("Player 2 has "+ threeOrMorePlayer2TotalScore + " score.");
+                Console.WriteLine("Player 2 has " + threeOrMorePlayer2NumberPlays + " plays.");
+                
+                
+            }
+            return threeOrMorePlayer2TotalScore;
+
+           
+        }
         
     }
     

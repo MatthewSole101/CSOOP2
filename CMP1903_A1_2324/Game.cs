@@ -11,7 +11,6 @@ namespace CMP1903_A1_2324
         public  Tuple<int, int, int> myMethod()
         {
                 
-            int count = 0;
                 
             List<int> RollList = new List<int>();
 
@@ -88,12 +87,33 @@ namespace CMP1903_A1_2324
 
     class ThreeOrMore
     {
-        Die die = new Die();
+       
 
         public List<int> Player1game()
         {
+            Die die = new Die();
             List<int> rollList = new List<int>();
             
+            int Roll1 = die.Roll();
+            int Roll2 = die.Roll();
+            int Roll3 = die.Roll();
+            int Roll4 = die.Roll();
+            int Roll5 = die.Roll();
+            rollList.Add(Roll1);
+            rollList.Add(Roll2);
+            rollList.Add(Roll3);
+            rollList.Add(Roll4);
+            rollList.Add(Roll5);
+            Console.WriteLine("Hello");
+            
+            return rollList ;
+        }
+        
+        public List<int> Player2game()
+        {
+            List<int> rollList = new List<int>();
+            Die die = new Die();
+
             int Roll1 = die.Roll();
             int Roll2 = die.Roll();
             int Roll3 = die.Roll();
