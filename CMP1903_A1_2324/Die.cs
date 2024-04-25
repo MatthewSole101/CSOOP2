@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CMP1903_A1_2324
@@ -27,7 +28,8 @@ namespace CMP1903_A1_2324
         public  int Roll()
         {
             
-            int randNum = rand.Next(1, 8);
+            int randNum = rand.Next(1, 7);
+            Thread.Sleep(1);
             Rolls = randNum;
             return randNum;
             

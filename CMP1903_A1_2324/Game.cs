@@ -87,6 +87,7 @@ namespace CMP1903_A1_2324
 
     class ThreeOrMore
     {
+        
        
 
         public List<int> Player1game()
@@ -94,18 +95,14 @@ namespace CMP1903_A1_2324
             Die die = new Die();
             List<int> rollList = new List<int>();
             
-            int Roll1 = die.Roll();
-            int Roll2 = die.Roll();
-            int Roll3 = die.Roll();
-            int Roll4 = die.Roll();
-            int Roll5 = die.Roll();
-            rollList.Add(Roll1);
-            rollList.Add(Roll2);
-            rollList.Add(Roll3);
-            rollList.Add(Roll4);
-            rollList.Add(Roll5);
-            Console.WriteLine("Hello");
+            for (int j = 0; j < 5; j++)
+            {
+                rollList.Add(die.Roll());
+            }
+
+
             
+                
             return rollList ;
         }
         
@@ -114,17 +111,14 @@ namespace CMP1903_A1_2324
             List<int> rollList = new List<int>();
             Die die = new Die();
 
-            int Roll1 = die.Roll();
-            int Roll2 = die.Roll();
-            int Roll3 = die.Roll();
-            int Roll4 = die.Roll();
-            int Roll5 = die.Roll();
-            rollList.Add(Roll1);
-            rollList.Add(Roll2);
-            rollList.Add(Roll3);
-            rollList.Add(Roll4);
-            rollList.Add(Roll5);
-            Console.WriteLine("Hello");
+            for (int j = 0; j < 5; j++)
+            {
+                rollList.Add(die.Roll());
+            }
+            
+            
+            
+          
             
             return rollList ;
         }
@@ -132,18 +126,27 @@ namespace CMP1903_A1_2324
         public int checkUnique(List<int> RollNumbers)
         {
             int count = 0;
-            for (int i = 0; i < RollNumbers.Count; i++)
+            
+            List<int> RollNumbersuniquness = new List<int>();
+
+            for (int i = 1; i < 7; i++)
             {
-                for (int j = i + 1; j < RollNumbers.Count; j++)
+                foreach (int num in RollNumbers)
                 {
-                    if (RollNumbers[i] == RollNumbers[j])
+                    if (num == i)
                     {
-                        // If any two numbers are equal, the list is not unique
                         count++;
                     }
                 }
+                RollNumbersuniquness.Add(count);
+                count = 0;
             }
-            return count;
+            
+            RollNumbersuniquness.Sort();
+            RollNumbersuniquness.Reverse();
+             
+            return RollNumbersuniquness[0];
+            
             
         }
     }

@@ -27,6 +27,9 @@ namespace CMP1903_A1_2324
             SevensOut so = new SevensOut();
             ThreeOrMore tom = new ThreeOrMore();
             Statistics stats = new Statistics();
+
+            CheckStats menuStats = new CheckStats();
+            
             bool menuExit = false;
             
 
@@ -35,13 +38,27 @@ namespace CMP1903_A1_2324
             int totalroll = 0;
             
 
-            bool isExit = false;
             int player1totalscore = 0;
             int player2totalscore = 0;
+            int gameChoice = 0;
             while (menuExit == false)
             {
-                Console.WriteLine("Do you want to play SevensOut(1) or Three or More(2)?: ");
-                int gameChoice = Convert.ToInt32(Console.ReadLine());
+                bool isExit = false;
+                bool sevensOutexit = false;
+
+
+                try
+                {
+                    Console.WriteLine("---------------------------------------------------------------------------------");
+                    Console.WriteLine("Do you want to play SevensOut(1) or Three or More(2) or check statistics(3)?: ");
+                    gameChoice = Convert.ToInt32(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input");
+                    Console.WriteLine("Try again");
+                }
+                
                 
                 if (gameChoice == 1)
                 {
@@ -50,8 +67,27 @@ namespace CMP1903_A1_2324
                     {
                         var Player1Roll = so.Player1game();
                         var Player2Roll = so.Player2game();
-                        
 
+                        int player1CheckSeven = Player1Roll.Item1 + Player1Roll.Item2;
+                        int player2CheckSeven = Player2Roll.Item1 + Player2Roll.Item2;
+
+                        if (player1CheckSeven == 7)
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1 + " and " + Player1Roll.Item2);
+                            sevensOutexit = true;
+                            break;
+                            
+                        }
+                        if (player2CheckSeven == 7)
+                        {
+                            Console.WriteLine("");
+                            Console.WriteLine("Player 2 die rolled are: " + Player2Roll.Item1 + " and " + Player2Roll.Item2);
+                            sevensOutexit = true;
+                            break;
+                            
+                        }
+                        
                         
                         if (Player1Roll.Item1 != 7 || Player2Roll.Item1 != 7)
                         {
@@ -61,8 +97,9 @@ namespace CMP1903_A1_2324
                                 {
                                     totalroll = Player1Roll.Item1 + Player1Roll.Item2;
                                     player1totalscore = stats.SevensOutplayer1Stat(totalroll, false);
-                                    Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1 + " and " + Player1Roll.Item2);
                                     Console.WriteLine("");
+
+                                    Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1 + " and " + Player1Roll.Item2);
 
                                 }
                             }
@@ -85,9 +122,9 @@ namespace CMP1903_A1_2324
                             if ( Player1Roll.Item1 == Player1Roll.Item2) 
                             {
                                 totalroll = (Player1Roll.Item1 * 2) + (Player1Roll.Item1 * 2);
-                                player1totalscore = stats.SevensOutplayer1Stat(totalroll, false);
-                                Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1 + " and " + Player1Roll.Item2);
+                                player1totalscore = stats.SevensOutplayer1Stat(totalroll, false);                                Console.WriteLine("");
                                 Console.WriteLine("");
+                                Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1 + " and " + Player1Roll.Item2);
 
                             }
                             if (Player2Roll.Item1 == Player2Roll.Item2)
@@ -98,24 +135,9 @@ namespace CMP1903_A1_2324
                             }
                            
                         }
-                        if (Player1Roll.Item1 == 7 ||Player2Roll.Item1 == 7 )
-                        {
-                            if (Player1Roll.Item1 == 7)
-                            {
-                                player1totalscore = stats.SevensOutplayer1Stat(Player1Roll.Item1, false);
-                                Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1);
-                                Console.WriteLine("");
+                        
 
-                            }
-                            if (Player2Roll.Item1 == 7 )
-                            {
-                                player2totalscore = stats.SevensOutplayer2Stat(Player2Roll.Item1, false);
-                                Console.WriteLine("Player 2 die rolled are: " + Player2Roll.Item1);
-                            }
-                            
-                        }
-
-                        bool sevensOutexit = false;
+                        
                         while (sevensOutexit == false)
                         {
                             Console.WriteLine("Do you want to look at your statistics(yes/no)?: ");
@@ -144,39 +166,6 @@ namespace CMP1903_A1_2324
                             }
                         }
                         
-                        bool sevensOutexit2 = false;
-                        while (sevensOutexit2 == false)
-                        {
-                            Console.WriteLine("Do you want to continue(yes/no)?: ");
-                            string userExit = Console.ReadLine();
-
-                            if (userExit == "no" || userExit == "No")
-                            {
-                                isExit = true;
-                                sevensOutexit2 = true;
-                                break;
-                                
-                            }
-                            if (userExit == "yes" || userExit == "Yes")
-                            {
-                                isExit = false;
-                                sevensOutexit2 = true;
-
-                            }
-                            else
-                            {
-                                Console.WriteLine("Invalid Input, try again!");
-                                Console.WriteLine("");
-
-                                sevensOutexit = false;
-                            }
-                        }
-
-                        // else
-                        // {
-                        // if(nameof.type = string)
-                        //     Console.WriteLine("Invalid input!!");
-                        // }
 
                     }
                     
@@ -199,109 +188,203 @@ namespace CMP1903_A1_2324
                     if (player1totalscore == player2totalscore)
                     {
                         Console.WriteLine("");
-
                         Console.WriteLine("It's a draw!");
                     }
-
-
-
-                    
-                    menuExit = true;
-
-
                 }
 
+                
+                
+                
+                
+                
+                
+                
+                
                 if (gameChoice == 2)
                 {
                     int threeOrMoreplayer1Score = 0;
                     int threeOrMoreplayer2Score = 0;
                     int count = 0;
+                    int uniqueNum = 0;
 
 
                     
                        
-                        while (threeOrMoreplayer1Score < 20 )
+                        while ((threeOrMoreplayer1Score <= 20)  || (threeOrMoreplayer2Score <= 20))
                         {
+                            
                             ThreeOrMore tom2 = new ThreeOrMore();
-                            List<int> Player1RollThreeorMore = new List<int>();
-                            List<int> Player2RollThreeorMore = new List<int>();
 
                             if (threeOrMoreplayer1Score < 20)
                             {
-                                Player1RollThreeorMore = tom2.Player1game();
-
-                                int uniqueNum = 0;
-                    
-                                Console.WriteLine("");
-                                Console.WriteLine("Player 1");
-
-
-                                for (int i = 0; i < 5; i++)
+                                if (threeOrMoreplayer1Score >= 20)
                                 {
-                                    Console.WriteLine(Player1RollThreeorMore[i]);
+                                    break;
                                 }
-
-                                uniqueNum = tom2.checkUnique(Player1RollThreeorMore);
-                                uniqueNum = 5 - uniqueNum;
-                                // if (uniqueNum == 4)
-                                // {
-                                //     uniqueNum = uniqueNum - 1;
-                                // }
-                            
-                                threeOrMoreplayer1Score = stats.ThreeOrMorePlayer1Stat(uniqueNum, false);
                                 
-                                if (threeOrMoreplayer1Score == 1)
+                                Console.WriteLine("Do you want to roll(yes/no)?: ");
+                                string player1exit = Console.ReadLine();
+
+                                if (player1exit == "yes" || player1exit == "Yes")
                                 {
-                                    threeOrMoreplayer1Score = 0;
+                                    bool player1exit2 = false;
+                                    while (player1exit2 == false)
+                                    {
+                                        Console.WriteLine("");
+                                        Console.WriteLine("-----Player 1-----");
+                                        Console.WriteLine("");
+                                        List<int> Player1RollThreeorMore = new List<int>();
+                                        uniqueNum = 0;
+
+                                        Player1RollThreeorMore = tom2.Player1game();
+
+                                        for (int i = 0; i < 5; i++)
+                                        {
+                                            Console.WriteLine(Player1RollThreeorMore[i]);
+                                        }
+
+                                        uniqueNum = tom2.checkUnique(Player1RollThreeorMore);
+
+
+
+                                        threeOrMoreplayer1Score = stats.ThreeOrMorePlayer1Stat(uniqueNum, false);
+                                    
+                                        if (threeOrMoreplayer1Score == 1)
+                                        {
+                                            player1exit2 = false;
+                                            // threeOrMoreplayer1Score = 0;
+                                    
+                                        }
+                                        else
+                                        {
+                                            player1exit2 = true;
+                                        }
+
+                                    
+                                    
+                                        Console.WriteLine("The dice are "+ uniqueNum+ " of a kind.");
+                                    
+                                        Console.WriteLine("Player 1 has " + threeOrMoreplayer1Score + " points");
+
+                                    }
+                                   
                                     
                                 }
-                                Console.WriteLine("The dice are "+ uniqueNum+ " of a kind.");
-                                Console.WriteLine(threeOrMoreplayer1Score);
+                                
+                                
+                                
+                                
                             }
+                                
+                            else
+                            {
+                                break;
+                            }
+                            
+                            
 
                             if (threeOrMoreplayer2Score < 20)
                             {
-                                Player2RollThreeorMore = tom2.Player2game();
-
-                                int uniqueNum = 0;
-                    
-                                Console.WriteLine("");
-                                Console.WriteLine("Player 2");
-
-
-                                for (int i = 0; i < 5; i++)
+                                if (threeOrMoreplayer1Score >= 20)
                                 {
-                                    Console.WriteLine(Player2RollThreeorMore[i]);
+                                    break;
                                 }
+                                
 
-                                uniqueNum = tom2.checkUnique(Player2RollThreeorMore);
-                                uniqueNum = 5 - uniqueNum;
-                                // if (uniqueNum == 4)
-                                // {
-                                //     uniqueNum = uniqueNum - 1;
-                                // }
+                                uniqueNum = 0;
+                    
+                                
+                                
+                                Console.WriteLine("Do you want to continue(yes/no)?: ");
+                                string player2exit = Console.ReadLine();
+
+
+                                if (player2exit == "yes" || player2exit == "Yes")
+                                {
+                                    bool player2exit2 = false;
+                                    while (player2exit2 == false)
+                                    {
+                                        Console.WriteLine("");
+                                        Console.WriteLine("-----Player 2-----");
+                                        Console.WriteLine("");
+                                        
+                                        List<int> Player2RollThreeorMore = new List<int>();
+
+                                        Player2RollThreeorMore = tom2.Player2game();
+                                    
+
+
+                                        for (int i = 0; i < 5; i++)
+                                        {
+                                            Console.WriteLine(Player2RollThreeorMore[i]);
+                                        }
+
+                                        uniqueNum = tom2.checkUnique(Player2RollThreeorMore);
+
+                                        threeOrMoreplayer2Score = stats.ThreeOrMorePlayer2Stat(uniqueNum, false);
+
+
 
                                
                             
-                                threeOrMoreplayer2Score = stats.ThreeOrMorePlayer2Stat(uniqueNum, false);
 
-                                if (threeOrMoreplayer2Score == 1)
-                                {
-                                    threeOrMoreplayer2Score = 0;
+                                        if (threeOrMoreplayer2Score == 1)
+                                        {
+                                            player2exit2 = false;
+                                            // threeOrMoreplayer2Score = 0;
+                                        
+                                        }
+                                        else
+                                        {
+                                            player2exit2 = true;
+
+                                        }
+                                    
+                                        Console.WriteLine("The dice are "+ uniqueNum+ " of a kind.");
+                                        Console.WriteLine("Player 2 has " + threeOrMoreplayer2Score + " points");
+                                    }
+                                    
                                     
                                 }
-                                Console.WriteLine("The dice are "+ uniqueNum+ " of a kind.");
-                                Console.WriteLine(threeOrMoreplayer2Score);
+                               
+                            }
+                            else
+                            {
+                                break;
                             }
 
                             
                         }
                         
-                        stats.ThreeOrMorePlayer1Stat(0, true);
-                        stats.ThreeOrMorePlayer2Stat(0, true);
+                        int player1Score = stats.ThreeOrMorePlayer1Stat(0, true);
+                        int player2Score = stats.ThreeOrMorePlayer2Stat(0, true);
 
+                        if (player1Score > player2Score)
+                        {
+                            Console.WriteLine("Player 1 wins!");
+                        }
+                        if (player1Score < player2Score)
+                        {
+                            Console.WriteLine("Player 2 wins!");
+                        }
+                        
+                        //Asks the user if they want to play another game
+                        
 
-                        menuExit = true;
+                        // menuExit = true;
+                }
+
+                if (gameChoice == 3)
+                {
+                    
+                    Console.WriteLine("Do you want to look at SevensOut(1) or ThreeOrMore(2)?: ");
+                    int statChoice = Convert.ToInt32(Console.ReadLine());
+
+                    if (statChoice == 1)
+                    {
+                        menuStats.SevensOutstats();
+                    }
+                    
                 }
                 else
                 {

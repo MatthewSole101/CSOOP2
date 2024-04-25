@@ -1,13 +1,14 @@
 using System;
+using System.Runtime.CompilerServices;
 
 namespace CMP1903_A1_2324
 {
     public class Statistics
     {
       
-        int sevensOutPlayer1NumberPlays = 0;
-        int sevensOutPlayer1HighScore = 0;
-        int sevensOutPlayer1TotalScore = 0;
+        public static int sevensOutPlayer1NumberPlays = 0;
+        public  static int sevensOutPlayer1HighScore = 0;
+        public  static int sevensOutPlayer1TotalScore = 0;
         
         
         public int SevensOutplayer1Stat(int currentScore = 0, bool userStat = false)
@@ -36,9 +37,9 @@ namespace CMP1903_A1_2324
 
         }
         
-        int sevensOutPlayer2NumberPlays = 0;
-        int sevensOutPlayer2HighScore = 0;
-        int sevensOutPlayer2TotalScore = 0;
+        public  static int sevensOutPlayer2NumberPlays = 0;
+        public  static int sevensOutPlayer2HighScore = 0;
+        public  static int sevensOutPlayer2TotalScore = 0;
         public int SevensOutplayer2Stat(int currentScore = 0, bool userStat = false)
         {
 
@@ -60,13 +61,15 @@ namespace CMP1903_A1_2324
                 Console.WriteLine("");
                 Console.WriteLine("Player 2's high score is: " + sevensOutPlayer2HighScore);
                 Console.WriteLine("Player 2 has made " + sevensOutPlayer2NumberPlays + " moves");
+                Console.WriteLine("");
+
             }
             
             return sevensOutPlayer2TotalScore;
 
         }
-        int threeOrMorePlayer1NumberPlays = 0;
-        int threeOrMorePlayer1TotalScore = 0;
+        public  static int threeOrMorePlayer1NumberPlays = 0;
+        public  static int threeOrMorePlayer1TotalScore = 0;
         public int ThreeOrMorePlayer1Stat(int ofAKind = 0, bool userStat = false)
         {
             if (userStat == false)
@@ -75,6 +78,14 @@ namespace CMP1903_A1_2324
                 {
                     Console.WriteLine("Do you want to rethrow all?(1) or thr remaining dice?(2): ");
                     int rethrowChoice = Convert.ToInt32(Console.ReadLine());
+
+                    if (rethrowChoice == 1)
+                    {
+                        Console.WriteLine("Rethrowing all");
+
+                    }
+                    Console.WriteLine("Rethrowing all");
+
 
                     return rethrowChoice;
                 }
@@ -95,13 +106,18 @@ namespace CMP1903_A1_2324
 
                 return threeOrMorePlayer1TotalScore;
             }
+            
+            
 
             if (userStat == true)
             {
+                Console.WriteLine("");
+
                 Console.WriteLine("Player 1 has "+ threeOrMorePlayer1TotalScore + " score.");
                 Console.WriteLine("Player 1 has " + threeOrMorePlayer1NumberPlays + " plays.");
-                
-                
+                Console.WriteLine("");
+                return threeOrMorePlayer1TotalScore;
+
             }
             return threeOrMorePlayer1TotalScore;
 
@@ -143,14 +159,46 @@ namespace CMP1903_A1_2324
             {
                 Console.WriteLine("Player 2 has "+ threeOrMorePlayer2TotalScore + " score.");
                 Console.WriteLine("Player 2 has " + threeOrMorePlayer2NumberPlays + " plays.");
-                
-                
+                Console.WriteLine("");
+                return threeOrMorePlayer2TotalScore;
             }
             return threeOrMorePlayer2TotalScore;
 
            
         }
         
+    }
+
+    class CheckStats : Statistics
+    {
+        public void SevensOutstats()
+        {
+            Console.WriteLine("-----SevensOut-----");
+            Console.WriteLine("Player 1 has " + sevensOutPlayer1TotalScore + " points");
+            Console.WriteLine("Player 1's current high score is " + sevensOutPlayer1HighScore);
+            Console.WriteLine("");
+            Console.WriteLine("Player 2 has " + sevensOutPlayer2TotalScore + " points");
+            Console.WriteLine("Player 2's current high score is " + sevensOutPlayer2HighScore);
+
+    
+            if (sevensOutPlayer1TotalScore > sevensOutPlayer2TotalScore)
+            {
+                Console.WriteLine("Player 1 is currently winning");
+            }
+
+            if (sevensOutPlayer2TotalScore > sevensOutPlayer1TotalScore)
+            {
+                Console.WriteLine("Player 2 is currently winning");
+
+            }
+            if (sevensOutPlayer2TotalScore == sevensOutPlayer1TotalScore)
+            {
+                Console.WriteLine("It is currently a draw!");
+
+            }
+
+
+        }
     }
     
     
