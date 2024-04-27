@@ -22,13 +22,17 @@ namespace CMP1903_A1_2324
         {
             
 
-            //Created a Game and SevensOut object
+            //Created a Game and SevensOut and stats object
             Game gm = new Game();
             SevensOut so = new SevensOut();
             ThreeOrMore tom = new ThreeOrMore();
-            Statistics stats = new Statistics();
+            
+            
+            SevensOutStatistics mySevensOutStatisticsstats = new SevensOutStatistics();
+            ThreeOrMoreStatistics myThreeOrMoreStatistics = new ThreeOrMoreStatistics();
 
-            CheckStats menuStats = new CheckStats();
+            CheckStats SevensOutmenuStats = new CheckStats();
+            CheckStatsThreeOrMore ThreeOrMoremenuStats = new CheckStatsThreeOrMore();
             
             bool menuExit = false;
             
@@ -96,7 +100,7 @@ namespace CMP1903_A1_2324
                                 if (Player1Roll.Item1 != Player1Roll.Item2)
                                 {
                                     totalroll = Player1Roll.Item1 + Player1Roll.Item2;
-                                    player1totalscore = stats.SevensOutplayer1Stat(totalroll, false);
+                                    player1totalscore = mySevensOutStatisticsstats.Player1Stat(totalroll, false);
                                     Console.WriteLine("");
 
                                     Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1 + " and " + Player1Roll.Item2);
@@ -109,7 +113,7 @@ namespace CMP1903_A1_2324
                                 if (Player2Roll.Item1 != Player2Roll.Item2)
                                 {
                                     totalroll = Player2Roll.Item1 + Player2Roll.Item2;
-                                    player2totalscore = stats.SevensOutplayer2Stat(totalroll, false);
+                                    player2totalscore = mySevensOutStatisticsstats.Player2Stat(totalroll, false);
                                     Console.WriteLine("Player 2 die rolled are: " + Player2Roll.Item1 + " and " + Player2Roll.Item2);
                             
                                 }
@@ -122,7 +126,7 @@ namespace CMP1903_A1_2324
                             if ( Player1Roll.Item1 == Player1Roll.Item2) 
                             {
                                 totalroll = (Player1Roll.Item1 * 2) + (Player1Roll.Item1 * 2);
-                                player1totalscore = stats.SevensOutplayer1Stat(totalroll, false);                                Console.WriteLine("");
+                                player1totalscore = mySevensOutStatisticsstats.Player1Stat(totalroll, false);                                Console.WriteLine("");
                                 Console.WriteLine("");
                                 Console.WriteLine("Player 1 die rolled are: " + Player1Roll.Item1 + " and " + Player1Roll.Item2);
 
@@ -130,7 +134,7 @@ namespace CMP1903_A1_2324
                             if (Player2Roll.Item1 == Player2Roll.Item2)
                             {
                                 totalroll = (Player2Roll.Item1 * 2) + (Player2Roll.Item1 * 2);
-                                player2totalscore = stats.SevensOutplayer2Stat(totalroll, false);
+                                player2totalscore = mySevensOutStatisticsstats.Player2Stat(totalroll, false);
                                 Console.WriteLine("Player 2 die rolled are: " + Player2Roll.Item1 + " and " + Player2Roll.Item2);
                             }
                            
@@ -140,30 +144,40 @@ namespace CMP1903_A1_2324
                         
                         while (sevensOutexit == false)
                         {
-                            Console.WriteLine("Do you want to look at your statistics(yes/no)?: ");
-                            string userStatChoice = Console.ReadLine();
+                            string userStatChoice = "";
+                            try
+                            {
+                                Console.WriteLine("Do you want to look at your statistics(yes/no)?: ");
+                                userStatChoice = Console.ReadLine();
+                            }
+                            catch
+                            {
+                                Console.WriteLine("Invalid input");
+                                Console.WriteLine("Try again");
+                            }
+                            
+
+                            
 
                             if (userStatChoice == "Yes" || userStatChoice == "yes")
                             {
-                                stats.SevensOutplayer1Stat(0, true);
-                                stats.SevensOutplayer2Stat(0, true);
-                                sevensOutexit = true;
-                                break;
+                                mySevensOutStatisticsstats.Player1Stat(0, true);
+                                mySevensOutStatisticsstats.Player2Stat(0, true);
 
-                            
+
                             }
                             if (userStatChoice == "No" || userStatChoice == "no")
                             {
                                 
                                 break;
                             }
-                            else
-                            {
-                                Console.WriteLine("Invalid Input, try again!");
-                                Console.WriteLine("");
-                                sevensOutexit = false;
-                                
-                            }
+                            // else
+                            // {
+                            //     Console.WriteLine("Invalid Input, try again!");
+                            //     Console.WriteLine("");
+                            //     sevensOutexit = false;
+                            //     
+                            // }
                         }
                         
 
@@ -221,9 +235,21 @@ namespace CMP1903_A1_2324
                                 {
                                     break;
                                 }
+
+                                string player1exit = "";
+
+                                try
+                                {
+                                    Console.WriteLine("Do you want to roll(yes/no)?: ");
+                                    player1exit = Console.ReadLine();
+                                }
+                                catch
+                                {
+                                    Console.WriteLine("Invalid input");
+                                    Console.WriteLine("Try again");
+                                }
                                 
-                                Console.WriteLine("Do you want to roll(yes/no)?: ");
-                                string player1exit = Console.ReadLine();
+                                
 
                                 if (player1exit == "yes" || player1exit == "Yes")
                                 {
@@ -247,7 +273,7 @@ namespace CMP1903_A1_2324
 
 
 
-                                        threeOrMoreplayer1Score = stats.ThreeOrMorePlayer1Stat(uniqueNum, false);
+                                        threeOrMoreplayer1Score = myThreeOrMoreStatistics.Player1Stat(uniqueNum, false);
                                     
                                         if (threeOrMoreplayer1Score == 1)
                                         {
@@ -292,11 +318,19 @@ namespace CMP1903_A1_2324
                                 
 
                                 uniqueNum = 0;
-                    
+                                string player2exit = "";
+                                try
+                                {
+                                    Console.WriteLine("Do you want to continue(yes/no)?: ");
+                                    player2exit = Console.ReadLine();
+                                }
+                                catch
+                                {
+                                    Console.WriteLine("Invalid input");
+                                    Console.WriteLine("Try again");
+                                }
                                 
                                 
-                                Console.WriteLine("Do you want to continue(yes/no)?: ");
-                                string player2exit = Console.ReadLine();
 
 
                                 if (player2exit == "yes" || player2exit == "Yes")
@@ -321,7 +355,7 @@ namespace CMP1903_A1_2324
 
                                         uniqueNum = tom2.checkUnique(Player2RollThreeorMore);
 
-                                        threeOrMoreplayer2Score = stats.ThreeOrMorePlayer2Stat(uniqueNum, false);
+                                        threeOrMoreplayer2Score = myThreeOrMoreStatistics.Player2Stat(uniqueNum, false);
 
 
 
@@ -356,8 +390,8 @@ namespace CMP1903_A1_2324
                             
                         }
                         
-                        int player1Score = stats.ThreeOrMorePlayer1Stat(0, true);
-                        int player2Score = stats.ThreeOrMorePlayer2Stat(0, true);
+                        int player1Score = myThreeOrMoreStatistics.Player1Stat(0, true);
+                        int player2Score = myThreeOrMoreStatistics.Player2Stat(0, true);
 
                         if (player1Score > player2Score)
                         {
@@ -376,14 +410,37 @@ namespace CMP1903_A1_2324
 
                 if (gameChoice == 3)
                 {
-                    
-                    Console.WriteLine("Do you want to look at SevensOut(1) or ThreeOrMore(2)?: ");
-                    int statChoice = Convert.ToInt32(Console.ReadLine());
-
-                    if (statChoice == 1)
+                    int statChoice = 0;
+                    bool isStatChoice = false;
+                    while (isStatChoice == false)
                     {
-                        menuStats.SevensOutstats();
+                        try
+                        {
+                            Console.WriteLine("Do you want to look at SevensOut(1) or ThreeOrMore(2)?: ");
+                            statChoice = Convert.ToInt32(Console.ReadLine());
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Invalid input");
+                            Console.WriteLine("Try again");
+                        }
+                       
+
+                        if (statChoice == 1)
+                        {
+                            SevensOutmenuStats.SevensOutstats();
+                            isStatChoice = true;
+                        }
+
+                        if (statChoice == 2)
+                        {
+                            ThreeOrMoremenuStats.ThreeOrMorestats();
+                            isStatChoice = true;
+
+                        }
                     }
+                    
+                    
                     
                 }
                 else
