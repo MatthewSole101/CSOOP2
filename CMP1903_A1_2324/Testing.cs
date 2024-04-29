@@ -171,13 +171,7 @@ namespace CMP1903_A1_2324
                                 
                                 break;
                             }
-                            // else
-                            // {
-                            //     Console.WriteLine("Invalid Input, try again!");
-                            //     Console.WriteLine("");
-                            //     sevensOutexit = false;
-                            //     
-                            // }
+                           
                         }
                         
 
@@ -278,7 +272,6 @@ namespace CMP1903_A1_2324
                                         if (threeOrMoreplayer1Score == 1)
                                         {
                                             player1exit2 = false;
-                                            // threeOrMoreplayer1Score = 0;
                                     
                                         }
                                         else
@@ -365,7 +358,7 @@ namespace CMP1903_A1_2324
                                         if (threeOrMoreplayer2Score == 1)
                                         {
                                             player2exit2 = false;
-                                            // threeOrMoreplayer2Score = 0;
+                                            
                                         
                                         }
                                         else
@@ -405,7 +398,6 @@ namespace CMP1903_A1_2324
                         //Asks the user if they want to play another game
                         
 
-                        // menuExit = true;
                 }
 
                 if (gameChoice == 3)
@@ -443,17 +435,10 @@ namespace CMP1903_A1_2324
                     
                     
                 }
-                else
-                {
-                    // Console.WriteLine("Invalid input, try again");
-                }
+              
                 
             }
-            // else
-            // {
-            //     
-            // }
-            
+           
             
             
             

@@ -21,8 +21,7 @@ namespace CMP1903_A1_2324
                 {
                     sevensOutPlayer1HighScore = currentScore;
                 }
-                // Console.WriteLine("Player 1's high score is: " + Player1HighScore);
-                // Console.WriteLine("Player 1 has made " + Player1NumberPlays + " moves");
+                 
             }
 
 
@@ -52,8 +51,7 @@ namespace CMP1903_A1_2324
                 {
                     sevensOutPlayer2HighScore = currentScore;
                 }
-                // Console.WriteLine("Player 2's high score is: " + Player2HighScore);
-                // Console.WriteLine("Player 2 has made " + Player2NumberPlays + " moves");
+                
             }
 
 
