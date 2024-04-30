@@ -79,8 +79,18 @@ namespace CMP1903_A1_2324
                 {
                     if (ofAKind == 2)
                     {
-                        Console.WriteLine("Do you want to rethrow all?(1) or thr remaining dice?(2): ");
-                        int rethrowChoice = Convert.ToInt32(Console.ReadLine());
+                        int rethrowChoice = 0;
+                        try
+                        {
+                            Console.WriteLine("Do you want to rethrow all?(1) or the remaining dice?(2): ");
+                            rethrowChoice = Convert.ToInt32(Console.ReadLine());
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Invalid input");
+                            Console.WriteLine("Try again");
+                        }
+                        
 
                         if (rethrowChoice == 1)
                         {
