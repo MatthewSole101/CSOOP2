@@ -22,12 +22,12 @@ namespace CMP1903_A1_2324
         {
             
 
-            //Created a Game and SevensOut and stats object
+            //Created a Game and SevensOut, Three Or More and stats object
             Game gm = new Game();
             SevensOut so = new SevensOut();
             ThreeOrMore tom = new ThreeOrMore();
             
-            
+            //Creates instances of the 
             SevensOutStatistics mySevensOutStatisticsstats = new SevensOutStatistics();
             ThreeOrMoreStatistics myThreeOrMoreStatistics = new ThreeOrMoreStatistics();
 
@@ -69,12 +69,14 @@ namespace CMP1903_A1_2324
                     
                     while (isExit == false) 
                     {
+                        //Continue to roll random die rills from the SevensOut class and saves them as a tuple
                         var Player1Roll = so.Player1game();
                         var Player2Roll = so.Player2game();
 
                         int player1CheckSeven = Player1Roll.Item1 + Player1Roll.Item2;
                         int player2CheckSeven = Player2Roll.Item1 + Player2Roll.Item2;
 
+                        //Checks rolls and assignes the pints from Statistics class
                         if (player1CheckSeven == 7)
                         {
                             Console.WriteLine("");
@@ -145,6 +147,7 @@ namespace CMP1903_A1_2324
                         while (sevensOutexit == false)
                         {
                             string userStatChoice = "";
+                            //Error handling
                             try
                             {
                                 Console.WriteLine("Do you want to look at your statistics(yes/no)?: ");
@@ -161,6 +164,8 @@ namespace CMP1903_A1_2324
 
                             if (userStatChoice == "Yes" || userStatChoice == "yes")
                             {
+                                //Polymorphism
+                                //If the user says yes to checking stats - the Player stat method gets called. But because 'userStat' is true - it just checks the current stats
                                 mySevensOutStatisticsstats.Player1Stat(0, true);
                                 mySevensOutStatisticsstats.Player2Stat(0, true);
 
@@ -210,6 +215,8 @@ namespace CMP1903_A1_2324
                 
                 if (gameChoice == 2)
                 {
+                    //ThreeOrMore
+                    
                     int threeOrMoreplayer1Score = 0;
                     int threeOrMoreplayer2Score = 0;
                     int count = 0;
@@ -230,8 +237,9 @@ namespace CMP1903_A1_2324
                                     break;
                                 }
 
-                                string player1exit = "";
 
+                                string player1exit = "";
+                                //Error handling
                                 try
                                 {
                                     Console.WriteLine("Do you want to roll(yes/no)?: ");
@@ -258,6 +266,8 @@ namespace CMP1903_A1_2324
 
                                         Player1RollThreeorMore = tom2.Player1game();
 
+                                        
+                                        //Prints out all die rolls
                                         for (int i = 0; i < 5; i++)
                                         {
                                             Console.WriteLine(Player1RollThreeorMore[i]);
@@ -288,6 +298,10 @@ namespace CMP1903_A1_2324
                                     }
                                    
                                     
+                                }
+                                if (player1exit == "no" || player1exit == "No")
+                                {
+                                    break;
                                 }
                                 
                                 
@@ -340,7 +354,7 @@ namespace CMP1903_A1_2324
                                         Player2RollThreeorMore = tom2.Player2game();
                                     
 
-
+                                        //Displays die rolls
                                         for (int i = 0; i < 5; i++)
                                         {
                                             Console.WriteLine(Player2RollThreeorMore[i]);
@@ -373,6 +387,11 @@ namespace CMP1903_A1_2324
                                     
                                     
                                 }
+
+                                if (player2exit == "no" || player2exit == "No")
+                                {
+                                    break;
+                                }
                                
                             }
                             else
@@ -382,7 +401,7 @@ namespace CMP1903_A1_2324
 
                             
                         }
-                        
+                        //When game is over it will display both players stats and who one
                         int player1Score = myThreeOrMoreStatistics.Player1Stat(0, true);
                         int player2Score = myThreeOrMoreStatistics.Player2Stat(0, true);
 
@@ -402,6 +421,9 @@ namespace CMP1903_A1_2324
 
                 if (gameChoice == 3)
                 {
+                    
+                    //Checks stats in the menu
+                    //Uses Polymorphism to make it more understandle what is going on 
                     int statChoice = 0;
                     bool isStatChoice = false;
                     while (isStatChoice == false)
@@ -440,21 +462,6 @@ namespace CMP1903_A1_2324
             }
            
             
-            
-            
-            
-            
-
-            //Getting the total so I can verify it in the Debug.Assert
-
-            //Debugging
-
-            // Debug.Assert(Roll.Item1 < 7 && Roll.Item1 > 0, "Roll 1 is not between 1 and 6");
-            //
-            // Debug.Assert(Roll.Item2 < 7 && Roll.Item2 > 0, "Roll 2 is not between 1 and 6" );
-            //
-            // Debug.Assert(Roll.Item3 < 7 && Roll.Item3 > 0, "Roll 3 is not between 1 and 6");
-            //
 
 
         }

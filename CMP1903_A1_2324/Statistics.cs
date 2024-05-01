@@ -27,6 +27,7 @@ namespace CMP1903_A1_2324
 
             if (userStat == true)
             {
+                
                 Console.WriteLine("");
                 Console.WriteLine("Player 1's high score is: " + sevensOutPlayer1HighScore);
                 Console.WriteLine("Player 1 has made " + sevensOutPlayer1NumberPlays + " moves");
@@ -73,6 +74,8 @@ namespace CMP1903_A1_2324
         {
             public  static int threeOrMorePlayer1NumberPlays = 0;
             public  static int threeOrMorePlayer1TotalScore = 0;
+            
+            //Polymorphism
             public int Player1Stat(int ofAKind = 0, bool userStat = false)
             {
                 if (userStat == false)
@@ -80,9 +83,10 @@ namespace CMP1903_A1_2324
                     if (ofAKind == 2)
                     {
                         int rethrowChoice = 0;
+                        //Error handling
                         try
                         {
-                            Console.WriteLine("Do you want to rethrow all?(1) or the remaining dice?(2): ");
+                            Console.WriteLine("Do you want to rethrow all?(1): ");
                             rethrowChoice = Convert.ToInt32(Console.ReadLine());
                         }
                         catch
@@ -97,7 +101,6 @@ namespace CMP1903_A1_2324
                             Console.WriteLine("Rethrowing all");
 
                         }
-                        Console.WriteLine("Rethrowing all");
 
 
                         return rethrowChoice;
@@ -145,8 +148,17 @@ namespace CMP1903_A1_2324
                 {
                     if (ofAKind == 2)
                     {
-                        Console.WriteLine("Do you want to rethrow all?(1) or thr remaining dice?(2): ");
-                        int rethrowChoice = Convert.ToInt32(Console.ReadLine());
+                        int rethrowChoice = 0;
+                        try
+                        {
+                            Console.WriteLine("Do you want to rethrow all?(1): ");
+                            rethrowChoice = Convert.ToInt32(Console.ReadLine());
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Invalid input");
+                            Console.WriteLine("Try again");
+                        }
 
                         return rethrowChoice;
                     }
@@ -188,6 +200,7 @@ namespace CMP1903_A1_2324
     //Inheritance
     class CheckStats : SevensOutStatistics
     {
+        //Shows the stats of the both players depending on what game they ask to check in the menu in the Testing class
         public void SevensOutstats()
         {
             Console.WriteLine("-----SevensOut-----");
